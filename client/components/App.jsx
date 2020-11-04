@@ -2,7 +2,10 @@ import React from 'react'
 
 const App = () => {
   return (
-    <h1>React development has begun!</h1>
+  <>
+    <h1>Website is getting built.</h1>
+    <p>currently playing with github actions and AWS ECS</p>
+    </>
   )
 }
 
