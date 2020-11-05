@@ -1,11 +1,10 @@
-FROM node:8 as react-build
-WORKDIR /builddir
-COPY . ./
-RUN yarn
-RUN yarn build
-
-FROM nginx:alpine
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=react-build /builddir/build /usr/share/nginx/html
+FROM node:alpine as builder
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY ./ ./
+RUN ["npm", "run", "build"]
+ 
+FROM nginx
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=builder /app/build /usr/share/nginx/html
