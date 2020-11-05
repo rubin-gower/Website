@@ -1,10 +1,11 @@
-FROM node:12.18.2 as build
-WORKDIR '/app'
-COPY package.json .
-RUN npm install
-COPY ./ ./
-RUN ["npm", "run", "build"]
- 
-FROM nginx
+FROM node:8 as react-build
+WORKDIR /builddir
+COPY . ./
+RUN yarn
+RUN yarn build
+
+FROM nginx:alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=react-build /builddir/build /usr/share/nginx/html
 EXPOSE 80
-COPY --from=build /app/build /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
