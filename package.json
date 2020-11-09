@@ -12,7 +12,7 @@
     "dev:client": "webpack --watch",
     "dev:server": "nodemon server",
     "start": "run-s build server",
-    "build": "webpack",
+    "build": "react-scripts build",
     "server": "node server",
     "test": "jest --watchAll"
   },
@@ -32,9 +32,15 @@
     ]
   },
   "dependencies": {
+    "clean-webpack-plugin": "^3.0.0",
     "express": "^4.17.1",
+    "html-webpack-plugin": "^4.5.0",
     "npm-run-all": "^4.1.5",
-    "superagent": "^5.2.2"
+    "react-scripts": "^4.0.0",
+    "superagent": "^5.2.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-merge": "^5.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -43,16 +49,26 @@
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^25.3.0",
+    "babel-jest": "^26.6.0",
     "babel-loader": "^8.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "jest": "^25.3.0",
+    "jest": "^26.6.0",
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
